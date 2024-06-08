@@ -7,16 +7,22 @@
    <body>
        <div class="container">
           <div class="row">
-               <div class="col-6">
+               <div class="col-4">
                  <img src="marisol1.jpeg" class="img-thumbnail" style="width:500px;height:400px;"/><br>
                  <button class="btn btn-primary" type="button" id="btnLike1"> Like</button>
                  <output id="countLike1">0</output>
                </div>
-               <div class="col-6">
+               <div class="col-4">
                  <img src="marisol2.jpeg" class="img-thumbnail" style="width:500px;height:400px;"/><br>
                  <button class="btn btn-primary" type="button" id="btnLike2"> Like</button>
                  <output id="countLike2">0</output>
            </div>
+             <div class="col-4">
+                      Comments<br>
+                      <input type="text" class="form-control" id="comment"/>
+                      <button class="btn btn-success" id="submit">Submit</button>
+                      <textarea class="form-control" id="commentbox" rows="20"></textarea>
+                </div>
          </div>
       </div>
    <script src="index.js"></script>
