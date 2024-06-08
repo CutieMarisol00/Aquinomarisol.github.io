@@ -40,3 +40,4 @@ function submitComment(){
   comment.value="";
 }
 submit.addEventListener("click",submitComment)
+  
