@@ -1,33 +1,208 @@
 <!DOCTYPE html>
-   <title>My Picture that i want to flex</title>
-   <head>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-   </head> 
-   <body>
-       <div class="container">
-          <div class="row">
-               <div class="col-4">
-                 <img src="marisol1.jpeg" class="img-thumbnail" style="width:500px;height:400px;"/><br>
-                 <button class="btn btn-primary" type="button" id="btnLike1">like</button>
-                 <output id="countLike1">0</output>
-                 <button class="btn btn-primary" type="button" id="btnDisLike1">dislike</button>
-                 <output id="countDisLike1"> 0 </output>
-               </div>
-               <div class="col-4">
-                 <img src="marisol2.jpeg" class="img-thumbnail" style="width:500px;height:400px;"/><br>
-                 <button class="btn btn-primary" type="button" id="btnLike2">like</button>
-                 <output id="countLike2">0</output>
-                 <button class="btn btn-primary" type="button" id="btnDisLike2">dislike</button>
-                 <output id="countDisLike2"> 0 </output>
-           </div>
-             <div class="col-4">Comments<br>
-             <input type="text" class="form-control" id="comment"/>
-             <button class="btn btn-success" id="submit">Submit</button>
-             <textarea class="form-control" id="commentbox" rows="20"></textarea>
-           </div>
-         </div>
-      </div>
-   <script src="index.js"></script>
-   </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marisol's Dress</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <style>
+        /* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+/* Navigation styles */
+.navbar {
+    background-color: #555;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Main content area */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.product p {
+    color: #888;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 style="font-color: white:">Marisol's Dress</h2>
+                <hr />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="sheath dress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Sheath Dress 👗</h5>
+                        <p class="card-text">Price: ₱1500.00</p>
+                        <input type="number" class="form-control" id="qty1" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="frockdress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Frock 👗</h5>
+                        <p class="card-text">Price: ₱580.00</p>
+                        <input type="number" class="form-control" id="qty2" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="shirtdress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Shirt Dress 👗</h5>
+                        <p class="card-text">Price: ₱900.00</p>
+                        <input type="number" class="form-control" id="qty3" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="peasantdress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Peasant Dress 👗</h5>
+                        <p class="card-text">Price: ₱700.00</p>
+                        <input type="number" class="form-control" id="qty4" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="coatdress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Coatdress 👗</h5>
+                        <p class="card-text">Price: ₱570.00</p>
+                        <input type="number" class="form-control" id="qty5" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="gowndress.jpeg" class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">Gown</h5>
+                        <p class="card-text">Price: ₱3000.00</p>
+                        <input type="number" class="form-control" id="qty6" placeholder="Enter quantity" oninput="updateOrder()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <label for="carts">Orders</label>
+                        <textarea class="form-control mb-3" rows="10" id="carts" readonly style="font-size: 12px;"></textarea>
+                        <input type="text" class="form-control border-0 mb-3" id="total" readonly placeholder="Total"/>
+                        <input type="number" class="form-control mb-3" id="cash" placeholder="Cash Tendered" oninput="calculateChange()"/>
+                        <input type="text" class="form-control border-0 mb-3" id="change" readonly placeholder="Change"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
 </html>
