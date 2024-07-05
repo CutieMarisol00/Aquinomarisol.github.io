@@ -1,47 +1,43 @@
-const btnLike1 = document.getElementById("btnLike1")
-const countLike1 = document.getElementById("countLike1")
+// app.js
 
-function clickLike1(){
-  let totalLikes = parseInt(countLike1.value) + 1
-  countLike1.textContent = totalLikes.toString()
-}
-btnLike1.addEventListener("click",clickLike1)
+// Prices for the items
+const prices = {
+    qty1: 1500.00,
+    qty2: 580.00,
+    qty3: 900.00,
+    qty4: 700.00,
+    qty5: 570.00,
+    qty6: 3000.00
+};
 
-function clickLike2(){
-  let totalLikes = parseInt(countLike2.value) + 1
-  countLike2.textContent = totalLikes.toString()
-}
-btnLike2.addEventListener("click",clickLike2)
+// Update order details
+function updateOrder() {
+    let orderDetails = "";
+    let total = 0;
 
-const btnDisLike1 = document.getElementById("btnDisLike1")
-const countDisLike1 = document.getElementById("countDisLike1")
+    for (let i = 1; i <= 6; i++) {
+        let qty = document.getElementById(`qty${i}`).value;
+        if (qty > 0) {
+            let itemPrice = prices[`qty${i}`];
+            let itemTotal = qty * itemPrice;
+            orderDetails += `Item ${i}: ${qty} x ₱${itemPrice.toFixed(2)} = ₱${itemTotal.toFixed(2)}\n`;
+            total += itemTotal;
+        }
+    }
 
-function clickDisLike1(){
-  let totalDisLikes = parseInt(countDisLike1.value) + 1
-  countDisLike1.textContent = totalDisLikes.toString()
-}  
-btnDisLike1.addEventListener("click",clickDisLike1)
-
-const btnDisLike2 = document.getElementById("btnDisLike2")
-const countDisLike2 = document.getElementById("countDisLike2")
-
-function clickDisLike2(){
-  let totalDisLikes = parseInt(countDisLike2.value) + 1
-  countDisLike2.textContent = totalDisLikes.toString()
-}  
-btnDisLike2.addEventListener("click",clickDisLike2)
-const submit = document.getElementById("submit")
-
-const comment = document.getElementById("comment")
-
-const commentbox = document.getElementById("commentbox")
-
-function submitComment(){
-
-commentbox.textContent += comment.value.toString() + "\n"
-
-comment.value=""
-
+    document.getElementById("carts").value = orderDetails;
+    document.getElementById("total").value = `Total: ₱${total.toFixed(2)}`;
 }
 
-submit.addEventListener("click", submitComment)
+// Calculate change
+function calculateChange() {
+    let total = parseFloat(document.getElementById("total").value.replace("Total: ₱", ""));
+    let cash = parseFloat(document.getElementById("cash").value);
+
+    if (!isNaN(total) && !isNaN(cash)) {
+        let change = cash - total;
+        document.getElementById("change").value = `Change: ₱${change.toFixed(2)}`;
+    } else {
+        document.getElementById("change").value = "Change: ₱0.00";
+    }
+}
